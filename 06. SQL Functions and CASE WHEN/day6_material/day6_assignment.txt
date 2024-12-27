@@ -1,0 +1,39 @@
+Note: please do not use any functions which are not taught in the class. you need to solve the questions only with the concepts that have been discussed so far.
+
+Run the following command to add and update dob column in employee table
+alter table  employee add dob date;
+update employee set dob = dateadd(year,-1*emp_age,getdate())
+
+1- write a query to print emp name , their manager name and diffrence in their age (in days) 
+for employees whose year of birth is before their managers year of birth
+2- write a query to find subcategories who never had any return orders in the month of november (irrespective of years)
+3- orders table can have multiple rows for a particular order_id when customers buys more than 1 product in an order.
+write a query to find order ids where there is only 1 product bought by the customer.
+4- write a query to print manager names along with the comma separated list(order by emp salary) of all employees directly reporting to him.
+5- write a query to get number of business days between order_date and ship_date (exclude weekends). 
+Assume that all order date and ship date are on weekdays only
+6- write a query to print 3 columns : category, total_sales and (total sales of returned orders)
+7- write a query to print below 3 columns
+category, total_sales_2019(sales in year 2019), total_sales_2020(sales in year 2020)
+8- write a query print top 5 cities in west region by average no of days between order date and ship date.
+9- write a query to print emp name, manager name and senior manager name (senior manager is manager's manager)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
