@@ -77,4 +77,3 @@ create table transactions_test
 
 insert into transactions_test
 select row_number() over (order by o.order_id) as order_id, t.product_name, t.color, t.size, t.total_amount from transactions t, orders o;
-
