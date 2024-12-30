@@ -1,0 +1,9 @@
+Please solve these problems. You have option to solve them in MySQL, sql server and postgres. All are free questions.
+
+1- https://www.namastesql.com/coding-problem/38-product-reviews
+2- https://www.namastesql.com/coding-problem/61-category-sales-part-1
+3- https://www.namastesql.com/coding-problem/62-category-sales-part-2
+4- https://www.namastesql.com/coding-problem/71-department-average-salary
+5- https://www.namastesql.com/coding-problem/72-product-sales
+6- https://www.namastesql.com/coding-problem/73-category-product-count
+7- https://www.namastesql.com/coding-problem/103-employee-mentor
