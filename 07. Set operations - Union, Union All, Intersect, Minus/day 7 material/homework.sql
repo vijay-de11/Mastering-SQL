@@ -149,52 +149,14 @@ insert into drivers values('dri_2', '12:15', '12:30', 'f','g'),('dri_2', '13:30'
 -- id, total_rides , profit_rides
 -- dri_1,5,1
 -- dri_2,2,0
--- select * from drivers;
-with
-tot_rides as
-(
-select d.id as id, count(1) as total_rides
-from drivers d
-group by id)
-,
-rides as
-(
-select d.id, d.end_time, d.end_loc
-from drivers d
-union all
-select d.id, d.start_time, d.start_loc
-from drivers d
-),
-profit_rides as
-(
-select id, end_time, end_loc, count(1) as total_rides
-from rides 
-group by id, end_time, end_loc
-)
-select distinct tr.id, tr.total_rides, sum(pr.total_rides-1) as profit_rides from tot_rides tr
-left join profit_rides pr
-on tr.id = pr.id
-group by tr.id, tr.total_rides;
+-- For visualizaton, run the below query first
+select d1.* , d2.* from drivers d1
+left join drivers d2 on d1.id = d2.id and d1.end_loc = d2.start_loc and d1.end_time = d2.start_time
 
--- AB's query
---lead function window
-select id, count(1) as total_rides
-,sum(case when end_loc=next_start_location then 1 else 0 end ) as profit_rides
-from (
-select *
-, lead(start_loc,1) over(partition by id order by start_time asc) as next_start_location
-from drivers) A
-group by id;
-
---self join
-with rides as (
-select *,row_number() over(partition by id order by start_time asc) as rn
-from drivers)
-select r1.id , count(1) total_rides, count(r2.id) as profit_rides
-from rides r1
-left join rides r2
-on r1.id=r2.id and r1.end_loc=r2.start_loc and r1.rn+1=r2.rn
-group by r1.id
+select d1.id, count(d1.id) as total_rides, count(d2.id) as profit_rides
+from drivers d1
+left join drivers d2 on d1.id = d2.id and d1.end_loc = d2.start_loc and d1.end_time = d2.start_time
+group by d1.id;
 
 -- Q4- write a query to print customer name and no of occurence of character 'n' in the customer name.
 -- customer_name , count_of_occurence_of_n
