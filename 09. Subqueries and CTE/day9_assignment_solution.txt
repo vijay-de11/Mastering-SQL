@@ -1,0 +1,61 @@
+Note: please do not use any functions which are not taught in the class. you need to solve the questions only with the concepts that have been discussed so far.
+
+1- write a query to find premium customers from orders data. Premium customers are those who have done more orders than average no of orders per customer.
+
+with no_of_orders_each_customer as (
+select customer_id,count(distinct order_id) as no_of_orders
+from orders 
+group by customer_id)
+select * from 
+no_of_orders_each_customer where no_of_orders > (select avg(no_of_orders) from no_of_orders_each_customer)
+
+2- write a query to find employees whose salary is more than average salary of employees in their department
+
+
+select e.* from employee e
+inner join (select dept_id,avg(salary) as avg_sal from employee group by dept_id)  d
+on e.dept_id=d.dept_id
+where salary>avg_sal
+
+3- write a query to find employees whose age is more than average age of all the employees.
+
+
+select * from employee 
+where emp_age > (select avg(emp_age) from employee)
+
+
+4- write a query to print emp name, salary and dep id of highest salaried employee in each department 
+
+
+select e.* from employee e
+inner join (select dept_id,max(salary) as max_sal from employee group by dept_id)  d
+on e.dept_id=d.dept_id
+where salary=max_sal
+
+5- write a query to print emp name, salary and dep id of highest salaried employee overall
+
+
+select * from employee 
+where salary = (select max(salary) from employee)
+
+
+6- write a query to print product id and total sales of highest selling products (by no of units sold) in each category
+
+with product_quantity as (
+select category,product_id,sum(quantity) as total_quantity
+from orders 
+group by category,product_id)
+,cat_max_quantity as (
+select category,max(total_quantity) as max_quantity from product_quantity 
+group by category
+)
+select *
+from product_quantity pq
+inner join cat_max_quantity cmq on pq.category=cmq.category
+where pq.total_quantity  = cmq.max_quantity
+
+
+
+
+
+
