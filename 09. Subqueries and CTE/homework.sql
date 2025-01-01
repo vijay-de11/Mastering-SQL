@@ -5,20 +5,13 @@
 --from orders 
 --group by customer_name;
 
---with total_orders as
---(
---	select customer_name, count(distinct order_id) as total_orders_per_customer
---from orders
---group by customer_name
---),
---avg_orders as
---(
---select customer_name, avg(total_orders_per_customer) as avg_orders_per_customer
---from total_orders
---group by customer_name
---)
---select a.customer_name, a.avg_orders_per_customer, t.total_orders_per_customer from total_orders t join avg_orders a
---on a.customer_name = t.customer_name where t.total_orders_per_customer >= a.avg_orders_per_customer;
+with total_orders as
+(
+select customer_name, count(distinct order_id) as total_orders_per_customer
+from orders
+group by customer_name
+)
+select * from total_orders where total_orders_per_customer > (select avg(total_orders_per_customer) from total_orders);
 
 -- 2- write a query to find employees whose salary is more than average salary of employees in their department
 select e.*, avg_salary_dept from employee e
@@ -52,10 +45,21 @@ on e.salary = d.highest_salary;
 -- 6- write a query to print product id and total sales of highest selling products (by no of units sold) in each category
 select top 5 * from orders;
 
+with product_quantity as
+(
 select category, product_id, sum(quantity) as total_sales
 from orders
 group by category, product_id
-order by total_sales desc;
+),
+max_quantity as
+(
+select category, max(quantity) as highest_sales
+from orders
+group by category
+)
+select * from product_quantity
+inner join max_quantity
+on product_quantity.category = max_quantity.category and product_quantity.total_sales = max_quantity.highest_sales;
 
 -- 7-*** https://www.namastesql.com/coding-problem/8-library-borrowing-habits
 -- Sol: 
