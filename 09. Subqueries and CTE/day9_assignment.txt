@@ -11,3 +11,15 @@ Note: please do not use any functions which are not taught in the class. you nee
 8- https://www.namastesql.com/coding-problem/52-loan-repayment
 9- https://www.namastesql.com/coding-problem/55-lowest-price
  
+Solve below questions from Datalemur:
+Note: The platform supports only postgreSQL so there may be few differences in functions. Listing down some imp differences:
+
+SQL Server -> PostgreSQL
+-> To extract a part of the date
+datepart(day, order_date) => extract(day from order_date)
+
+-> to convert datetime/timestamp field to date or any other type of type casting
+cast(order_date as date) -> order_date::date
+
+Q) https://datalemur.com/questions/signup-confirmation-rate
+Q) https://datalemur.com/questions/supercloud-customer
