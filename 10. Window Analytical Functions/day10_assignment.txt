@@ -1,0 +1,46 @@
+Note: please do not use any functions which are not taught in the class. you need to solve the questions only with the concepts that have been discussed so far.
+
+
+1- write a query to print 3rd highest salaried employee details for each department (give preferece to younger employee in case of a tie). 
+In case a department has less than 3 employees then print the details of highest salaried employee in that department.
+
+2- write a query to find top 3 and bottom 3 products by sales in each region.
+
+3- Among all the sub categories..which sub category had highest month over month growth by sales in Jan 2020.
+
+4- write a query to print top 3 products in each category by year over year sales growth in year 2020.
+
+5- create below 2 tables 
+
+create table call_start_logs
+(
+phone_number varchar(10),
+start_time datetime
+);
+insert into call_start_logs values
+('PN1','2022-01-01 10:20:00'),('PN1','2022-01-01 16:25:00'),('PN2','2022-01-01 12:30:00')
+,('PN3','2022-01-02 10:00:00'),('PN3','2022-01-02 12:30:00'),('PN3','2022-01-03 09:20:00')
+create table call_end_logs
+(
+phone_number varchar(10),
+end_time datetime
+);
+insert into call_end_logs values
+('PN1','2022-01-01 10:45:00'),('PN1','2022-01-01 17:05:00'),('PN2','2022-01-01 12:55:00')
+,('PN3','2022-01-02 10:20:00'),('PN3','2022-01-02 12:50:00'),('PN3','2022-01-03 09:40:00')
+;
+
+write a query to get start time and end time of each call from above 2 tables.Also create a column of call duration in minutes.  Please do take into account that
+there will be multiple calls from one phone number and each entry in start table has a corresponding entry in end table.
+
+
+
+
+
+6-https://www.namastesql.com/coding-problem/64-penultimate-order
+
+7-https://www.namastesql.com/coding-problem/26-dynamic-pricing
+
+8-https://www.namastesql.com/coding-problem/76-amazon-notifications
+
+
