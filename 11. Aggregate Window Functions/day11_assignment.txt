@@ -1,0 +1,10 @@
+At this point you should be able to solve all the questions on https://www.namastesql.com/coding-problems. Please note that some of the problems are free and other premium problems you need to buy. 
+
+
+some more questions:
+
+1- write a sql to find top 3 products in each category by highest rolling 3 months total sales for Jan 2020.
+2- write a query to find products for which month over month sales has never declined.
+3- write a query to find month wise sales for each category for months where sales is more than the combined sales of previous 2 months for that category.
+
+
