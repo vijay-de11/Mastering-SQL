@@ -54,26 +54,26 @@ from orders ;
 --Q4- 4- write a query to print top 3 products in each category by year over year sales growth in year 2020.
 with sales_growth as
 (
-	select category, product_id, sum(sales) as total_sales, datepart(year, order_date) as sales_year
+	select category, product_name, sum(sales) as total_sales, datepart(year, order_date) as sales_year
 	from orders
 	where datepart(year, order_date) in (2019,2020)
-	group by category, product_id, datepart(year, order_date)
+	group by category, product_name, datepart(year, order_date)
 ),
 year_over_year_sales as
 (
-select category, product_id, total_sales, sales_year,
-lag(total_sales,1,total_sales) over(partition by category, product_id order by total_sales desc) year_over_year_sales,
-round((lag(total_sales,1,total_sales) over(partition by category, product_id order by total_sales desc) - total_sales)/total_sales, 2) sales_growth_2020
+select category, product_name, total_sales, sales_year,
+lag(total_sales,1,total_sales) over(partition by category, product_name order by total_sales desc) year_over_year_sales,
+round((lag(total_sales,1,total_sales) over(partition by category, product_name order by total_sales desc) - total_sales)/total_sales, 2) sales_growth_2020
 from sales_growth
 ),
 intermediate_result as
 (
-	select y.category, y.product_id, y.sales_growth_2020,
+	select y.category, y.product_name, y.sales_growth_2020,
 	rank() over(partition by y.category order by y.sales_growth_2020 desc) rn
 	from year_over_year_sales y
 	where y.sales_year=2020
 )
-select category, product_id, sales_growth_2020 from intermediate_result where rn<=3;
+select category, product_name, sales_growth_2020 from intermediate_result where rn<=3;
 --Q5- create below 2 tables 
 select * from call_start_logs;
 select * from call_end_logs;
