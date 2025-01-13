@@ -64,6 +64,7 @@ select * from orders_east
 
 insert into  orders select * from orders_back;
 
+-- To unpivot the data, we can either use UNION ALL or UNPIVOT()
 
 
 
