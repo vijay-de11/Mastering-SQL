@@ -1,0 +1,7 @@
+write a user defined functions  which takes 2 input parameters of DATE data type. 
+The function should return no of business days between the 2 dates.
+note -> if any of the 2 input dates are falling on saturday or sunday then function should use immediate Monday 
+date for calculation
+
+example if we pass dates as 2022-12-18 and 2022-12-24..then it should calculate business days 
+between 2022-12-19 and 2022-12-26
