@@ -1,0 +1,1 @@
+-- Create a Dimensional Modelling for any application and create DDL and insert data into that.
